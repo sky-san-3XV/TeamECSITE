@@ -86,6 +86,12 @@ public class AddCartAction extends ActionSupport implements SessionAware {
 	    	return ERROR;
 
 	    }
+	    if(cartList.size()==0){  //エラーで追加処理が不能だった場合かつカート情報が空の場合の処理
+
+	    	message="カート情報がありません。";
+	    	result=SUCCESS;
+
+	    }
 
 		return result;
 
