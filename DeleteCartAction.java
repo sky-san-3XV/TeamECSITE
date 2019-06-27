@@ -38,7 +38,13 @@ public class DeleteCartAction extends ActionSupport implements SessionAware {
 			}
 
     		for(String productId:checkList){
-    			dao.DeleteCart(productId, user_id);
+
+    		   int num=dao.DeleteCart(productId, user_id);
+
+    		   if(num<=0){
+    			   return ERROR;
+    		   }
+
     		}
 
     		   cartList=dao.getCartInfo(user_id); //削除後カートから情報取得
@@ -50,9 +56,10 @@ public class DeleteCartAction extends ActionSupport implements SessionAware {
 
    					result=SUCCESS;
 
-   				}
-   				else{
-   					result=ERROR;
+   				}else{
+
+   					return ERROR;
+
    				}
 
 

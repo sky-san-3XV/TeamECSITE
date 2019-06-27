@@ -462,10 +462,12 @@ public class CartInfoDAO {
 		}
 	}
 
-	public void DeleteCart(String productId,String userId){  //削除(productId版）
+	public int DeleteCart(String productId,String userId){  //削除(productId版）
 
 		DBConnector dbc=new DBConnector();
 		Connection con=dbc.getConnection();
+
+		int num=0;
 
 		String sql="delete from cart_info where product_id=? and user_id=?";
 
@@ -474,7 +476,7 @@ public class CartInfoDAO {
 			PreparedStatement ps=con.prepareStatement(sql);
 			ps.setString(1, productId);
 			ps.setString(2, userId);
-			ps.executeUpdate();
+			num=ps.executeUpdate();
 
 		}catch(Exception e){
 
@@ -491,6 +493,8 @@ public class CartInfoDAO {
 		}
 		}
 
+
+		return num;
 		}
 
 }
